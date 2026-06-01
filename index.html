@@ -379,7 +379,7 @@ header{display:flex;align-items:center;justify-content:space-between;
           <div id="bm-auto">
             <h4>Accord barré</h4>
             <div class="bfields">
-              <div class="bf"><label>Frette</label><input type="number" id="bfret" min="1" max="12" value="5" oninput="upBarre()"></div>
+              <div class="bf"><label>Frette</label><input type="number" id="bfret" min="1" max="12" value="5" oninput="upBarre()" onchange="upBarre()"></div>
               <div class="bf"><label>Forme</label>
                 <select id="bshape" onchange="upBarre()">
                   <option value="E">Forme E</option>
@@ -539,7 +539,7 @@ const CHORDS=[
   {n:"Esus4",c:"sus",s:[0,2,2,2,0,0]},{n:"Cadd9",c:"sus",s:[-1,3,2,0,3,0]},
   {n:"Gadd9",c:"sus",s:[3,2,0,2,0,3]},
 ];
-const BSHAPES={E:[0,0,2,2,1,0],A:[-1,0,2,2,2,0],Em:[0,0,2,2,0,0],Am:[-1,0,0,2,2,1]};
+const BSHAPES={E:[0,2,2,1,0,0],A:[-1,0,2,2,2,0],Em:[0,2,2,0,0,0],Am:[-1,0,2,2,1,0]};
 const NNAMES=["E","F","F#","G","G#","A","A#","B","C","C#","D","D#"];
 
 // ══════════════════════════════════════════════
@@ -647,7 +647,7 @@ function csvg(ss,lg){
     const x=ml+i*sx;
     if(v===-1){const yy=mt-(lg?12:8),r=lg?4:3;o+=`<line x1="${x-r}" y1="${yy-r}" x2="${x+r}" y2="${yy+r}" stroke="rgba(255,255,255,.4)" stroke-width="1.2"/>`;o+=`<line x1="${x+r}" y1="${yy-r}" x2="${x-r}" y2="${yy+r}" stroke="rgba(255,255,255,.4)" stroke-width="1.2"/>`;}
     else if(v===0){const yy=mt-(lg?12:8),r=lg?5:3;o+=`<circle cx="${x}" cy="${yy}" r="${r}" fill="none" stroke="#D4A853" stroke-width="1.5"/>`;}
-    else{const fi=v-off;if(fi>=1&&fi<=nf){const cy=mt+(fi-.5)*fy,r=lg?8:4;o+=`<circle cx="${x}" cy="${cy}" r="${r}" fill="#D4A853"/>`;if(lg)o+=`<text x="${x}" y="${cy+3.5}" text-anchor="middle" font-size="8" fill="#0F0F0D" font-weight="700" font-family="DM Mono,monospace">${v}</text>`;}}
+    else{const fi=v-off;if(fi>=1&&fi<=nf){const cy=mt+(fi-.5)*fy,r=lg?8:4;o+=`<circle cx="${x}" cy="${cy}" r="${r}" fill="#D4A853"/>`;o+=`<text x="${x}" y="${cy+3.5}" text-anchor="middle" font-size="${lg?8:5.5}" fill="#0F0F0D" font-weight="700" font-family="DM Mono,monospace">${v}</text>`;}}
   });
   return o+"</svg>";
 }
